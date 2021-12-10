@@ -1,0 +1,26 @@
+La nueva version del subsistema de datos recientes tiene cambios en todas sus querys
+
+Las funciones actualizadas, en su mayoria corresponden al archivo dataframe.py, estas son:
+
+	-datos_ace() : esta funcion fue cambiada radicalmente, pasando de realizar reiterada consultas a la DB, a solo realiar una, la cual obtiene los mismos datos que antes, esto utilizando la funcion time_bucket proporcionada por timescaledb.
+
+	-nombres_sensores() : a esta funcion se le actualizo la consulta a la DB, para obtener todos los nombres de los sensores pertenecientes a un tipo de sensor particular.
+
+	-tipos_sensores() : a esta funcion se le actualizo la consulta de DB, para obtener los tipos de sensores que estan disponibles en la base de datos, ademas esta limitada a solo traer un tipo de sensor, ya que la tabla donde estan ubicados los tipos de sensor (public.device, columna type), contiene datos que no estan asociados a los sensores y al traerlos puede llevar a errores.
+
+	-fecha_inicial() : a esta funcion se le actualizo la consulta de DB, para obtener la fecha inicial de los datos almacenados en DB.
+
+	-fecha_final() : a esta funcion se le actualizo la consulta de DB, para obtener la fecha final de los datos almacenados en DB.
+
+	-horas_del_dia() :  a esta funcion se le actualizo la consulta de DB, para obtener las horas en donde existen datos para visualizar desde una fecha inicial.
+
+	-datos_box() :  esta funcion fue actualizada, pasando de realizar reiterada consultas a la DB, a solo realiar una, la cual obtiene los mismos datos que antes, esto utilizando la funcion time_bucket proporcionada por timescaledb.
+
+	-generar_reportes() : cambio en la forma de obtener las imagenes de los graficos que se estan visualizando, anteriormente se utilizaba una dependencia de plotly llamada orca para generar estas imagenes, la cual debia instalarse por separado, ahora mediante pip instalando el archivo requirements.txt solamente, es posible generar estas imagenes gracias a la nueva dependencia de plotly kaleido, mejorando su redimiento a la vez.
+
+	- credenciales de la coneccion actualizada, fix varios, mejoras en rendimiento general, correcciones en la prevencion de errores.
+
+En el archivo app.py
+
+	-Cambios en el layout de la app, funcionalidad de soporte de ejes agregado, mejoras varias en la generacion de graficos, fix varios, correcciones en la interfaz.
+	-IMPORTANTE, solo hay graficas disponibles para tipo de sensor acelerometro (3 graficas, OHLC, Boxplot e histograma), las graficas para el tipo de sensor weather station no fueron actualizadas, sin embargo los cambios deberian ser minimos, ya que utiliza los metodos ya actualizados. 
